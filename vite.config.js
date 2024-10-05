@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   root:'.',
   publicDir:'src',
-  base:'/SwiftAid/',
+  // base:'/SwiftAid/',
   plugins: [react()],
   resolve: {
     alias: {
