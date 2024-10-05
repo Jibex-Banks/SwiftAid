@@ -16,18 +16,6 @@ const LandingPage = () => {
   }
   return (
     <div className="landing-page">
-      {/* <nav className="navbar">
-        <div className="container">
-          <h2 className="brand">SwiftAid</h2>
-          <ul className="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#stats">Stats</a></li>
-            <li><a href="#about">About</a></li>
-          </ul>
-        </div>
-      </nav> */}
-
       <main>
         <section id="home" className="hero">
           <div className="container">
@@ -43,7 +31,7 @@ const LandingPage = () => {
               </div>
             </div>
             <div className="hero-image">
-              <img src="src/amb.jpg" alt="Emergency Services" />
+              <img src="./amb.jpg" alt="Emergency Services" />
             </div>
           </div>
         </section>
