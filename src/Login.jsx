@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from './firebase';
+import { useNavigate } from 'react-router-dom';  // Import useNavigate hook
 import './Auth.css';
 
 export default function Login() {
@@ -10,6 +11,7 @@ export default function Login() {
         password: '',
     });
     const [error, setError] = useState('');
+    const navigate = useNavigate();  
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,7 +28,7 @@ export default function Login() {
         try {
             await signInWithEmailAndPassword(auth, formData.email, formData.password);
             console.log('User logged in successfully');
-            // Redirect or update UI
+            navigate("/dashboard");  
         } catch (error) {
             setError(error.message);
         }
@@ -36,7 +38,7 @@ export default function Login() {
         try {
             await signInWithPopup(auth, googleProvider);
             console.log('User logged in with Google successfully');
-            // Redirect or update UI
+            navigate('/dashboard');  // Redirect to dashboard
         } catch (error) {
             setError(error.message);
         }

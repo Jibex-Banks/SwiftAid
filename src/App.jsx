@@ -10,11 +10,11 @@ import NavBar from "./Navbar";
 import UserDashboard from "./UserDashboard";
 import DoctorListing from './Doctors';
 import MedicalRecords from './MedicalRecords';
+import AppointmentsList from './AppointmentList';
 
 export default function App() {
   return (
     <>
-      <MedicalRecords/>
       <NavBar />
       <Routes>
         <Route path="/" element={<LandingPage />} />
@@ -22,7 +22,10 @@ export default function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<ProfileComponent />} />
-        <Route path="/appointment" element={<AppointmentBookingComponent />} />
+        <Route path="/doctors" element={<DoctorListing />}/>
+        <Route path="/records" element={<MedicalRecords />}/>
+        <Route path="/appointment" element={<AppointmentsList />} />
+        <Route path="/bookappointment" element={<AppointmentBookingComponent />} />
         <Route path="/dashboard" element={<UserDashboard />} />
       </Routes>
     </>

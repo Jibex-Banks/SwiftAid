@@ -1,0 +1,62 @@
+/* Container for the doctor listing */
+.doctor-container {
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background for contrast */
+    text-align: center; /* Center text for headings */
+  }
+  
+  /* Heading style */
+  .doctor-container h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333; /* Darker color for better readability */
+  }
+  
+  /* Card container to hold all doctor cards */
+  .doctor-card {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping for responsive design */
+    justify-content: center; /* Center align cards */
+    gap: 20px; /* Space between cards */
+  }
+  
+  /* Individual doctor card */
+  .doctor-card > div {
+    background-color: #fff; /* White background for cards */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 15px;
+    width: 250px; /* Fixed width for cards */
+    transition: transform 0.2s; /* Smooth hover effect */
+  }
+  
+  /* Hover effect for the doctor card */
+  .doctor-card > div:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+  }
+  
+  /* Image styling */
+  .doctor-image {
+    width: 100%; /* Full width of the card */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Rounded corners for images */
+  }
+  
+  /* Doctor name style */
+  .doctor-card h3 {
+    font-size: 1.5em;
+    margin: 10px 0;
+    color: #2c3e50; /* Darker color for names */
+  }
+  
+  /* Specialty styling */
+  .speciality {
+    font-size: 1.1em;
+    color: #3498db; /* Blue color for specialties */
+  }
+  
+  /* Experience styling */
+  .experience {
+    font-size: 0.9em;
+    color: #7f8c8d; /* Grey color for experience */
+  }

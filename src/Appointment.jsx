@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { db, auth } from './firebase';
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { collection, addDoc } from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
+import doctorsData from './doctors.json'; // Import doctors data from JSON
 import './Appointment.css';
-
 
 const AppointmentBookingComponent = () => {
   const [appointment, setAppointment] = useState({
@@ -13,9 +12,10 @@ const AppointmentBookingComponent = () => {
     time: '',
     reason: '',
   });
-  const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [searchTerm, setSearchTerm] = useState(''); // State for search term
+  const [doctors, setDoctors] = useState(doctorsData); // State for doctors data
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -23,23 +23,18 @@ const AppointmentBookingComponent = () => {
       setLoading(false);
     });
 
-    fetchDoctors();
+    // Set doctors directly from the imported JSON data
+    setDoctors(doctorsData); // Set the doctors from the JSON data
 
     return () => unsubscribe();
   }, []);
 
-  const fetchDoctors = async () => {
-    try {
-      const querySnapshot = await getDocs(collection(db, "doctors"));
-      const doctorsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setDoctors(doctorsList);
-    } catch (error) {
-      console.error("Error fetching doctors:", error);
-    }
-  };
-
   const handleChange = (e) => {
     setAppointment({ ...appointment, [e.target.name]: e.target.value });
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
   };
 
   const handleSubmit = async (e) => {
@@ -48,20 +43,29 @@ const AppointmentBookingComponent = () => {
       alert('Please log in to book an appointment.');
       return;
     }
+  
+    const appointmentData = {
+      ...appointment,
+      userId: user.uid,
+      createdAt: new Date(),
+    };
+  
+    console.log("Submitting appointment data:", appointmentData);
+  
     try {
-      const docRef = await addDoc(collection(db, "appointments"), {
-        ...appointment,
-        userId: user.uid,
-        createdAt: new Date()
-      });
+      const docRef = await addDoc(collection(db, "appointments"), appointmentData);
       alert('Appointment booked successfully!');
-      console.log('Appointment booked with ID:', docRef.id);
       setAppointment({ doctorName: '', date: '', time: '', reason: '' });
     } catch (error) {
       console.error("Error booking appointment:", error);
       alert('Failed to book appointment. Please try again.');
     }
   };
+
+  // Filter doctors based on search term
+  const filteredDoctors = doctors.filter(doctor =>
+    doctor.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   if (loading) {
     return <div className="appointment-loading">Loading...</div>;
@@ -72,6 +76,20 @@ const AppointmentBookingComponent = () => {
       <div className="appointment-card">
         <h2 className="appointment-title">Book an Appointment</h2>
         <form onSubmit={handleSubmit} className="appointment-form">
+          
+          {/* Search Input for Doctors */}
+          <div className="form-group">
+            <label className="form-label">Search Doctor:</label>
+            <input
+              type="text"
+              placeholder="Search doctor by name"
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="form-input"
+            />
+          </div>
+
+          {/* Select Doctor Dropdown */}
           <div className="form-group">
             <label className="form-label">Doctor's Name:</label>
             <select
@@ -82,8 +100,10 @@ const AppointmentBookingComponent = () => {
               className="form-input"
             >
               <option value="">Select a doctor</option>
-              {doctors.map(doctor => (
-                <option key={doctor.id} value={doctor.name}>{doctor.name}</option>
+              {filteredDoctors.map(doctor => (
+                <option key={doctor.id} value={doctor.name}>
+                  {doctor.name}
+                </option>
               ))}
             </select>
           </div>

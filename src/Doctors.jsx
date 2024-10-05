@@ -1,31 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from './firebase';
-// import './DoctorListing.css';
+import doctorsData from './doctors.json'; 
+import './doctor.css';
 
 const DoctorListing = () => {
   const [doctors, setDoctors] = useState([]);
 
   useEffect(() => {
-    const fetchDoctors = async () => {
-      const querySnapshot = await getDocs(collection(db, "doctors"));
-      const doctorList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setDoctors(doctorList);
-    };
-
-    fetchDoctors();
+    setDoctors(doctorsData);
   }, []);
 
   return (
-    <div className="doctor-listing">
+    <div className="doctor-container">
       <h2>Our Doctors</h2>
-      <div className="doctor-grid">
+      <div className="doctor-card">
         {doctors.map(doctor => (
-          <div key={doctor.id} className="doctor-card">
+          <div key={doctor.name} className="doctor-card">
             <img src={doctor.imageUrl} alt={doctor.name} className="doctor-image" />
             <h3>{doctor.name}</h3>
-            <p>{doctor.specialty}</p>
-            <p>{doctor.experience} years experience</p>
+            <p className="speciality">{doctor.specialty}</p>
+            <p className='experience'>{doctor.experience} years experience</p>
           </div>
         ))}
       </div>

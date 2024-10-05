@@ -43,10 +43,11 @@ const NavBar = () => {
         <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
           <li><Link to="/" onClick={closeMenu}>Home</Link></li>
           <li><Link to="/emergency" onClick={closeMenu}>Emergency</Link></li>
-          <li><Link to="/appointment" onClick={closeMenu}>Appointments</Link></li>
+          <li><Link to="/bookappointment" onClick={closeMenu}>Appointments</Link></li>
           <li><Link to="/doctors" onClick={closeMenu}>Doctors</Link></li>
           <li><Link to="/records" onClick={closeMenu}>Medical Records</Link></li>
           <li><Link to="/dashboard" onClick={closeMenu}>Dashboard</Link></li>
+          <li><Link to="/login" onClick={closeMenu}>Login</Link></li>
         </ul>
       </div>
     </nav>
