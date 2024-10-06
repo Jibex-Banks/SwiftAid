@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { setDoc, doc } from 'firebase/firestore';
 import { auth, googleProvider, db } from './firebase';
 import './Auth.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Signup() {
     const navigate= useNavigate();
@@ -170,7 +170,7 @@ export default function Signup() {
             <button onClick={handleGoogleSignup} className="google-btn">
                 <FcGoogle /> Sign up with Google
             </button>
-            <p className="auth-switch">Already have an account? <a href="#login">Log in</a></p>
+            <p className="auth-switch">Already have an account? <Link to="/login">Log in</Link></p>
         </div>
         </div>
     );

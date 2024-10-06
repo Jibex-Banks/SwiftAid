@@ -11,7 +11,7 @@ import { getStorage } from "firebase/storage";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCAfJUQblT6Y6iGi78v6rfxT3XKHNRuDCw",
-  authDomain: "swiftaid.netlify.app",
+  authDomain: "https://swiftaid.netlify.app",
   projectId: "swiftaid-ebb01",
   storageBucket: "swiftaid-ebb01.appspot.com",
   messagingSenderId: "182978780114",
