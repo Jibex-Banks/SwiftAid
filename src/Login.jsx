@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from './firebase';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate hook
+import { Link, useNavigate } from 'react-router-dom';  // Import useNavigate hook
 import './Auth.css';
 
 export default function Login() {
@@ -74,7 +74,7 @@ export default function Login() {
             <button onClick={handleGoogleLogin} className="google-btn">
                 <FcGoogle /> Login with Google
             </button>
-            <p className="auth-switch">Don't have an account? <a href="/signup">Sign up</a></p>
+            <p className="auth-switch">Don't have an account? <Link to="/signup">Sign up</Link></p>
         </div>
         </div>
     );
