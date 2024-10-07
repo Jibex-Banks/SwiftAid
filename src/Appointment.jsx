@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { db, auth } from './firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
-import doctorsData from './doctors.json'; // Import doctors data from JSON
+import doctorsData from './doctors.json'; 
 import './Appointment.css';
 
 const AppointmentBookingComponent = () => {
@@ -14,8 +14,8 @@ const AppointmentBookingComponent = () => {
   });
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(''); // State for search term
-  const [doctors, setDoctors] = useState(doctorsData); // State for doctors data
+  const [searchTerm, setSearchTerm] = useState(''); 
+  const [doctors, setDoctors] = useState(doctorsData);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -23,8 +23,8 @@ const AppointmentBookingComponent = () => {
       setLoading(false);
     });
 
-    // Set doctors directly from the imported JSON data
-    setDoctors(doctorsData); // Set the doctors from the JSON data
+   
+    setDoctors(doctorsData);
 
     return () => unsubscribe();
   }, []);

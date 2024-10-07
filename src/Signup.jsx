@@ -55,7 +55,7 @@ export default function Signup() {
             });
 
             console.log('User registered successfully');
-            // Redirect or update UI
+            navigate("/dashboard")
         } catch (error) {
             setError(error.message);
         }
@@ -70,11 +70,11 @@ export default function Signup() {
                 fullName: user.displayName,
                 email: user.email,
                 phoneNumber: user.phoneNumber || '',
-                // Add other fields as needed
+                password: user.password,
             });
 
             console.log('User signed up with Google successfully');
-            // Redirect or update UI
+            navigate("/dashboard")
         } catch (error) {
             setError(error.message);
         }
@@ -162,7 +162,7 @@ export default function Signup() {
                     />
                     <label htmlFor="terms">I agree to the Terms and Conditions and Privacy Policy</label>
                 </div>
-                <button type="submit" className="submit-btn" onClick={goToLogin} >Sign Up</button>
+                <button type="submit" className="submit-btn">Sign Up</button>
             </form>
             <div className="divider">
                 <hr /><span>or</span><hr />

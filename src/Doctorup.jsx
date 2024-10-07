@@ -1,6 +1,6 @@
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from './firebase';
-import doctorsData from './doctors.json'; // Importing JSON file
+import doctorsData from './doctors.json'; 
 
 const uploadDoctorsToFirestore = async () => {
   try {

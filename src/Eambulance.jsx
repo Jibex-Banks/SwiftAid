@@ -91,7 +91,6 @@ export default function Eambulance() {
       });
 
       alert(`Emergency Ambulance Booked. Order ID:${docRef.id}`);
-      // Reset form or redirect user
     } catch (error) {
       console.error("Error submitting order: ", error);
       setError("An error occurred while submitting your order. Please try again.");

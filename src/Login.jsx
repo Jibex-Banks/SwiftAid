@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from './firebase';
-import { Link, useNavigate } from 'react-router-dom';  // Import useNavigate hook
+import { Link, useNavigate } from 'react-router-dom';  
 import './Auth.css';
 
 export default function Login() {
@@ -38,7 +38,7 @@ export default function Login() {
         try {
             await signInWithPopup(auth, googleProvider);
             console.log('User logged in with Google successfully');
-            navigate('/dashboard');  // Redirect to dashboard
+            navigate('/dashboard');  
         } catch (error) {
             setError(error.message);
         }

@@ -60,7 +60,7 @@ const MedicalRecord = () => {
       await addDoc(collection(db, 'medicalRecords'), recordData);
       alert('Medical record added successfully!');
       setNewRecord({ patientName: '', date: '', diagnosis: '', treatment: '' });
-      fetchRecords(); // Fetch updated records after adding a new one
+      fetchRecords();
     } catch (error) {
       console.error('Error adding medical record:', error);
       alert('Failed to add medical record. Please try again.');
